@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息查询工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #0d6efd;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* 头部工具主题图样式 */
+        .header-img {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .tool-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .tool-card h2 {
+            color: #212529;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13,110,253,0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0a58ca;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            text-align: center;
+        }
+
+        .result h3 {
+            font-size: 1.2rem;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            font-size: 1.1rem;
+            color: #0d47a1;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* 查询结果下方图片样式 */
+        .result-img {
+            display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>信息查询工具</h1>
+            <!-- 替换为你提供的图片链接 -->
+            <img src="http://gg.africanchief.cn/2025/09/20/13-14-01-0ca7192c-18d1-433d-92c4-90c4f5329caf.jpg" alt="信息查询工具封面" class="header-img">
+        </header>
+
+        <!-- 查Q绑工具 -->
+        <div class="tool-card">
+            <h2>Q绑查询</h2>
+            <div class="form-group">
+                <label for="qqInput">输入QQ号</label>
+                <input type="text" id="qqInput" placeholder="例如：123456789" maxlength="15">
+            </div>
+            <button class="btn" id="qqCheckBtn">查询</button>
+            <div class="result" id="qqResult">
+                <h3>查询结果</h3>
+                <p>请加 387339 获取完整信息</p>
+                <!-- 可根据需要，也替换这里的图片链接 -->
+                <img src="https://picsum.photos/id/180/300/150" alt="查询指引图" class="result-img">
+            </div>
+        </div>
+
+        <!-- 查手机号工具 -->
+        <div class="tool-card">
+            <h2>手机号查询</h2>
+            <div class="form-group">
+                <label for="phoneInput">输入手机号</label>
+                <input type="text" id="phoneInput" placeholder="例如：13800138000" maxlength="11">
+            </div>
+            <button class="btn" id="phoneCheckBtn">查询</button>
+            <div class="result" id="phoneResult">
+                <h3>查询结果</h3>
+                <p>请加 387339 获取完整信息</p>
+                <!-- 可根据需要，也替换这里的图片链接 -->
+                <img src="https://picsum.photos/id/48/300/150" alt="查询指引图" class="result-img">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 查Q绑按钮事件
+        const qqCheckBtn = document.getElementById('qqCheckBtn');
+        const qqInput = document.getElementById('qqInput');
+        const qqResult = document.getElementById('qqResult');
+
+        qqCheckBtn.addEventListener('click', () => {
+            const qqValue = qqInput.value.trim();
+            if (qqValue) {
+                qqResult.style.display = 'block';
+            } else {
+                qqResult.style.display = 'block';
+                qqResult.querySelector('p').textContent = "请先输入QQ号，再查询";
+            }
+        });
+
+        // 查手机号按钮事件
+        const phoneCheckBtn = document.getElementById('phoneCheckBtn');
+        const phoneInput = document.getElementById('phoneInput');
+        const phoneResult = document.getElementById('phoneResult');
+
+        phoneCheckBtn.addEventListener('click', () => {
+            const phoneValue = phoneInput.value.trim();
+            if (phoneValue) {
+                phoneResult.style.display = 'block';
+            } else {
+                phoneResult.style.display = 'block';
+                phoneResult.querySelector('p').textContent = "请先输入手机号，再查询";
+            }
+        });
+    </script>
+</body>
+</html>
